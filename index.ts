@@ -70,7 +70,10 @@ const students: Student[] = [
    Example:
      getStudentName(students[0]); // => "Alice"
  ******************************/
-
+function getStudentName(student: Student): string {
+  return student.name;
+}
+console.log(getStudentName(students[0]));
 
 /******************************
 * ✅ Q2) Create a `getCourse` function:
@@ -82,7 +85,12 @@ const students: Student[] = [
    Example:
      getCourse(students[4], 2); // => "Music"
  ******************************/
+function getCourse(student: Student, courseIndex: number): string {
+  let courseIndexfind = student.courses[courseIndex];
+  return courseIndexfind;
+}
 
+console.log(getCourse(students[4], 2));
 
 /******************************
  * ✅ Q3) Create `addCourseToStudent` function:
@@ -98,6 +106,12 @@ const students: Student[] = [
  addCourseToStudent(students[7], "Physics"); // => { id: 8, name: "Helen", courses: ["History", "Art", "PE", "Physics"] }
  ******************************/
 
+function addCourseToStudent(student: Student, course: string): Student {
+  student.courses.push(course);
+  return student;
+}
+
+console.log(addCourseToStudent(students[7], "Physics"));
 
 /******************************
  * ✅ Q4) Create `countCourses` function:
@@ -107,6 +121,12 @@ const students: Student[] = [
   Example:
    countCourses(students[1]); // => 4
  ******************************/
+
+function countCourses(student: Student): number {
+  return student.courses.length;
+}
+
+console.log(`The Student has ${countCourses(students[4])} courses!`);
 
 /******************************
  * ✅ Q5) Create a `removeCourseFromStudent` function:
@@ -120,6 +140,16 @@ const students: Student[] = [
     removeCourseFromStudent(students[6], "Science"); // => { id: 7, name: "Grace", courses: ["Math", "English", "Music"] }
  ******************************/
 
+function removeCourseFromStudent(student: Student, course: string): Student {
+  // student.courses = student.courses.filter((n) => {
+  //   if (n !== course) return student.courses;
+  // }); another way
+  student.courses = student.courses.filter((n) => n !== course);
+
+  return student;
+}
+
+console.log(removeCourseFromStudent(students[6], "Science"));
 
 /******************************
  * ✅ Q6) Create a `findStudentById` function:
@@ -133,4 +163,13 @@ const students: Student[] = [
    - findStudentById(students, 29); // => undefined
   ******************************/
 
+function findStudentById(
+  students: Student[],
+  studentId: number
+): Student | undefined {
+  let finedstudet = students.find((student) => student.id === studentId);
+  return finedstudet;
+}
 
+console.log(findStudentById(students, 10));
+console.log(findStudentById(students, 29));
